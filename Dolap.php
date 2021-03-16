@@ -19,6 +19,11 @@ class Dolap
         $this->initialParameters();
     }
 
+    /*
+    Başlangıçta elimizdeki tüm rafları boş olarak set ediyoruz.
+    Her bir raf için girilen miktar kadar yer ayrılmakta
+    Örnek te 3 raf ve her raf için 20 yer ayrılmıstır
+    */
     public function initialParameters()
     {
         for ($i = 0; $i < $this->raf_sayisi; $i++) {
@@ -28,6 +33,7 @@ class Dolap
         }
     }
 
+    /* Kapı Durumunu Kontrol Eden Yapı */
     public function checkDoorStatus()
     {
         if ($this->kapi_durumu) {
@@ -36,6 +42,7 @@ class Dolap
         return "Kapı kapalı";
     }
 
+    /* Doluluk Oranını Kontrol Eden Yapı */
     public function checkSolidityRadio()
     {
         $full = 0;
@@ -55,6 +62,7 @@ class Dolap
         }
     }
 
+    /* Anlık cihaz durumunu gösterilebilmek için yazıldı ama kullanılmadı*/
     public function processStatus()
     {
         if ($this->process_status) {
@@ -63,6 +71,7 @@ class Dolap
         return "İşlem Yok";
     }
 
+    /* Raftaki Boş Alan Sayısını Verir */
     public function spaceShelf($shelf)
     {
         if (in_array(0, $this->raf[$shelf])) {
@@ -71,7 +80,8 @@ class Dolap
         }
         return 0;
     }
-
+    
+    /* Raftaki Dolu Alan Sayısını Verir */
     public function fullShelf($shelf)
     {
         if (in_array(1, $this->raf[$shelf])) {
@@ -81,6 +91,7 @@ class Dolap
         return 0;
     }
 
+    /* Rafı Görüntüle */
     public function displayShelf($shelf)
     {
         $result = "";
@@ -102,6 +113,7 @@ class Dolap
         echo "<b>".($shelf + 1) . ". Raf Test Amaçlı Dolu Varsayıldı"."</b>". "<br>";
     }
 
+    /* Ürün Satın Al */
     public function buyProduct()
     {
         for ($i = 0; $i < $this->raf_sayisi; $i++) {
@@ -115,6 +127,7 @@ class Dolap
         return Helper::text("STATE_EMPTY");
     }
 
+    /* Ürün Yükle */
     public function addProduct()
     {
         for ($i = 0; $i < $this->raf_sayisi; $i++) {
