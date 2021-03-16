@@ -38,15 +38,20 @@ class Dolap
 
     public function checkSolidityRadio()
     {
-        switch ($this->doluluk_orani) {
-            case 0:
-                return "Boş";
-            case 1:
-                return "Kısmen Dolu";
-            case 2:
-                return "Dolu";
-            default:
-                return "Hatalı Parametre";
+        $full = 0;
+        $empty = 0;
+
+        for ($i = 0; $i < $this->raf_sayisi; $i++) {
+            $full += $this->fullShelf($i);
+            $empty += $this->spaceShelf($i);
+        }
+
+        if ($full == ($this->raf_sayisi * $this->raf_kolonu)) {
+            echo Helper::text("RATE_OF_FULL").Helper::text("FULL");
+        } elseif ($empty == ($this->raf_sayisi * $this->raf_kolonu)) {
+            echo Helper::text("RATE_OF_FULL").Helper::text("EMPTY");
+        } else {
+            echo Helper::text("RATE_OF_FULL").Helper::text("PARTIALLY_FULL");
         }
     }
 
@@ -82,7 +87,7 @@ class Dolap
         foreach ($this->raf[$shelf] as $raf) {
             $result .= $raf ? " Dolu" : " Boş";
         }
-        return ($shelf + 1) . ".Raf Durumu :" . $result;
+        return ($shelf + 1) . ".Raf :" . $result;
     }
 
     public function fillShelf($shelf)
@@ -90,7 +95,7 @@ class Dolap
         for ($i = 0; $i < $this->raf_kolonu; $i++) {
             $this->raf[$shelf][$i] = 1;
         }
-        echo ($shelf + 1). ". Raf Dolumu Tamamlandı"."<br>";
+        echo "<b>".($shelf + 1) . ". Raf Dolumu Tamamlandı"."</b>". "<br>";
     }
 
     public function buyProduct()
