@@ -90,12 +90,16 @@ class Dolap
         return ($shelf + 1) . ".Raf :" . $result;
     }
 
+    /*
+    Bu Function Dolabı Kısayoldan Doldurmak İçin Yazılmıştır(Doluluk testlerini yapabilmek için).
+    Normal şartlarda tek tek doldurulabilir yada satın alınabilinir
+    */
     public function fillShelf($shelf)
     {
         for ($i = 0; $i < $this->raf_kolonu; $i++) {
             $this->raf[$shelf][$i] = 1;
         }
-        echo "<b>".($shelf + 1) . ". Raf Dolumu Tamamlandı"."</b>". "<br>";
+        echo "<b>".($shelf + 1) . ". Raf Test Amaçlı Dolu Varsayıldı"."</b>". "<br>";
     }
 
     public function buyProduct()
