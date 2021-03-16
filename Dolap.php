@@ -6,7 +6,7 @@ class Dolap
 {
     private $process_status = null;
     private $kapi_durumu = null;
-    private $doluluk_orani = null; // 0->Boş , 1->Kısmen Dolu , 2->Dolu
+    private $doluluk_orani = null;
     private $raf_sayisi = null; //3
     private $raf_kolonu = null; //20
     private $raf = array();
